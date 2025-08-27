@@ -104,7 +104,11 @@ export const DashboardSidebar = () => {
             <SidebarMenu>
               {customerSupportItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild isActive={isActive(item.url)}>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={isActive(item.url)}
+                    className={cn(isActive(item.url) && "bg-muted")}
+                  >
                     <Link href={item.url}>
                       <item.icon className="size-4" />
                       {item.title}
@@ -123,7 +127,11 @@ export const DashboardSidebar = () => {
             <SidebarMenu>
               {configurationItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild isActive={isActive(item.url)}>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={isActive(item.url)}
+                    className={cn(isActive(item.url) && "bg-muted")}
+                  >
                     <Link href={item.url}>
                       <item.icon className="size-4" />
                       {item.title}
@@ -142,7 +150,11 @@ export const DashboardSidebar = () => {
             <SidebarMenu>
               {accountItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild isActive={isActive(item.url)}>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={isActive(item.url)}
+                    className={cn(isActive(item.url) && "bg-muted")}
+                  >
                     <Link href={item.url}>
                       <item.icon className="size-4" />
                       {item.title}
