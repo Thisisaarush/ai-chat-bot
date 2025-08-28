@@ -12,6 +12,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.1",
     "@workspace/backend": "workspace:*",
     "@workspace/ui": "workspace:*",
     "convex": "^1.26.1",
@@ -19,7 +20,9 @@
     "next": "^15.4.5",
     "next-themes": "^0.4.6",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "react-hook-form": "^7.62.0",
+    "zod": "^3.25.67"
   },
   "devDependencies": {
     "@types/node": "^20.19.9",
