@@ -40,3 +40,18 @@ export const create = mutation({
     return contactSessionId
   },
 })
+
+export const validate = mutation({
+  args: {
+    contactSessionId: v.id("contactSessions"),
+  },
+  handler: async (ctx, args) => {
+    const contactSession = await ctx.db.get(args.contactSessionId)
+    if (!contactSession) return { valid: false, reason: "Session not found" }
+
+    if (contactSession.expiresAt && contactSession.expiresAt < Date.now()) {
+      return { valid: false, reason: "Session expired" }
+    }
+    return { valid: true, contactSession }
+  },
+})

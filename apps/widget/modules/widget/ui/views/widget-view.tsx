@@ -3,16 +3,18 @@
 import { useAtomValue } from "jotai"
 import { WidgetAuthScreen } from "../screens/widget-auth-screen"
 import { screenAtom } from "../../atoms/widget-atoms"
+import { WidgetErrorScreen } from "../screens/widget-error-screen"
+import { WidgetLoadingScreen } from "../screens/widget-loading-screen"
 
 interface WidgetViewProps {
-  organizationId: string
+  organizationId: string | null
 }
 
 const WidgetView: React.FC<WidgetViewProps> = ({ organizationId }) => {
   const screen = useAtomValue(screenAtom)
   const screenComponents = {
-    error: <p>TODO: Error</p>,
-    loading: <p>TODO: Loading</p>,
+    error: <WidgetErrorScreen />,
+    loading: <WidgetLoadingScreen organizationId={organizationId} />,
     auth: <WidgetAuthScreen />,
     voice: <p>TODO: Voice</p>,
     inbox: <p>TODO: Inbox</p>,
