@@ -5,6 +5,8 @@ import { WidgetAuthScreen } from "../screens/widget-auth-screen"
 import { screenAtom } from "../../atoms/widget-atoms"
 import { WidgetErrorScreen } from "../screens/widget-error-screen"
 import { WidgetLoadingScreen } from "../screens/widget-loading-screen"
+import { WidgetSelectionScreen } from "../screens/widget-selection-screen"
+import { WidgetChatScreen } from "../screens/widget-chat-screen"
 
 interface WidgetViewProps {
   organizationId: string | null
@@ -13,13 +15,13 @@ interface WidgetViewProps {
 const WidgetView: React.FC<WidgetViewProps> = ({ organizationId }) => {
   const screen = useAtomValue(screenAtom)
   const screenComponents = {
-    error: <WidgetErrorScreen />,
     loading: <WidgetLoadingScreen organizationId={organizationId} />,
+    error: <WidgetErrorScreen />,
     auth: <WidgetAuthScreen />,
     voice: <p>TODO: Voice</p>,
     inbox: <p>TODO: Inbox</p>,
-    selection: <p>TODO: Selection</p>,
-    chat: <p>TODO: Chat</p>,
+    selection: <WidgetSelectionScreen />,
+    chat: <WidgetChatScreen />,
     contact: <p>TODO: Contact</p>,
   }
 

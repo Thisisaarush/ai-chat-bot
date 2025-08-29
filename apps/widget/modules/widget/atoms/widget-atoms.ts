@@ -7,7 +7,6 @@ import { Id } from "@workspace/backend/convex/_generated/dataModel"
 // basic widget state atoms
 export const screenAtom = atom<WidgetScreen>("loading")
 export const organizationIdAtom = atom<string | null>(null)
-
 // Organization scoped contact session atom
 export const contactSessionIdAtomFamily = atomFamily((organizationId: string) =>
   atomWithStorage<Id<"contactSessions"> | null>(
@@ -15,6 +14,6 @@ export const contactSessionIdAtomFamily = atomFamily((organizationId: string) =>
     null
   )
 )
-
 export const errorMessageAtom = atom<string | null>(null)
 export const loadingMessageAtom = atom<string | null>(null)
+export const conversationIdAtom = atom<Id<"conversations"> | null>(null)
