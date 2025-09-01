@@ -12,6 +12,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@convex-dev/agent": "^0.2.5",
     "@hookform/resolvers": "^5.2.1",
     "@workspace/backend": "workspace:*",
     "@workspace/ui": "workspace:*",
