@@ -15,6 +15,8 @@ import {
 } from "../../atoms/widget-atoms"
 import { useAction, useQuery } from "convex/react"
 import { api } from "@workspace/backend/convex/_generated/api"
+import { useInfiniteScroll } from "@workspace/ui/hooks/use-infinite-scroll"
+import { InfiniteScrollTrigger } from "@workspace/ui/components/infinite-scroll.trigger"
 import { useThreadMessages, toUIMessages } from "@convex-dev/agent/react"
 import {
   AIConversation,
@@ -22,7 +24,7 @@ import {
   AIConversationScrollButton,
 } from "@workspace/ui/components/ui/conversation"
 import {
-  AIInput,
+  AIInput,  
   AIInputSubmit,
   AIInputTextarea,
   AIInputToolbar,
@@ -38,6 +40,7 @@ import {
   AISuggestions,
 } from "@workspace/ui/components/ui/suggestion"
 import { Form, FormField } from "@workspace/ui/components/form"
+import { DicebearAvatar } from "@workspace/ui/components/dicebear-avatar"
 
 const formSchema = z.object({
   message: z.string().min(1, "Message is required"),
@@ -81,6 +84,13 @@ export const WidgetChatScreen = () => {
     }
   )
 
+  const { topElementRef, handleLoadMore, canLoadMore, isLoadingMore } =
+    useInfiniteScroll({
+      status: messages.status,
+      loadMore: messages.loadMore,
+      loadSize: 10,
+    })
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -120,6 +130,12 @@ export const WidgetChatScreen = () => {
       {/* AI Conversation */}
       <AIConversation>
         <AIConversationContent>
+          <InfiniteScrollTrigger
+            canLoadMore={canLoadMore}
+            isLoadingMore={isLoadingMore}
+            onLoadMore={handleLoadMore}
+            ref={topElementRef}
+          />
           {toUIMessages(messages.results ?? []).map((message) => (
             <AIMessage
               key={message.id}
@@ -128,7 +144,13 @@ export const WidgetChatScreen = () => {
               <AIMessageContent>
                 <AIResponse>{message.text}</AIResponse>
               </AIMessageContent>
-              {/* todo: add avatar component */}
+              {message.role === "assistant" ? (
+                <DicebearAvatar
+                  seed="assistant"
+                  size={32}
+                  badgeImageUrl="/logo.svg"
+                />
+              ) : null}
             </AIMessage>
           ))}
         </AIConversationContent>
