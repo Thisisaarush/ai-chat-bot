@@ -7,6 +7,7 @@ import { WidgetErrorScreen } from "../screens/widget-error-screen"
 import { WidgetLoadingScreen } from "../screens/widget-loading-screen"
 import { WidgetSelectionScreen } from "../screens/widget-selection-screen"
 import { WidgetChatScreen } from "../screens/widget-chat-screen"
+import { WidgetInboxScreen } from "../screens/widget-inbox-screen"
 
 interface WidgetViewProps {
   organizationId: string | null
@@ -18,11 +19,11 @@ const WidgetView: React.FC<WidgetViewProps> = ({ organizationId }) => {
     loading: <WidgetLoadingScreen organizationId={organizationId} />,
     error: <WidgetErrorScreen />,
     auth: <WidgetAuthScreen />,
-    voice: <p>TODO: Voice</p>,
-    inbox: <p>TODO: Inbox</p>,
+    inbox: <WidgetInboxScreen />,
     selection: <WidgetSelectionScreen />,
     chat: <WidgetChatScreen />,
     contact: <p>TODO: Contact</p>,
+    voice: <p>TODO: Voice</p>,
   }
 
   return (

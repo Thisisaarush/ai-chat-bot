@@ -17,6 +17,7 @@
     "@workspace/backend": "workspace:*",
     "@workspace/ui": "workspace:*",
     "convex": "^1.26.1",
+    "date-fns": "^4.1.0",
     "jotai": "^2.13.1",
     "lucide-react": "^0.475.0",
     "next": "^15.4.5",
