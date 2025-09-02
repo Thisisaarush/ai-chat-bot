@@ -8,7 +8,6 @@ import {
   LibraryBigIcon,
   PaletteIcon,
 } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import {
@@ -16,7 +15,6 @@ import {
   SidebarFooter,
   SidebarContent,
   SidebarGroup,
-  SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
@@ -108,6 +106,7 @@ export const DashboardSidebar = () => {
                     asChild
                     isActive={isActive(item.url)}
                     className={cn(isActive(item.url) && "bg-muted")}
+                    tooltip={item?.title}
                   >
                     <Link href={item.url}>
                       <item.icon className="size-4" />
@@ -131,6 +130,7 @@ export const DashboardSidebar = () => {
                     asChild
                     isActive={isActive(item.url)}
                     className={cn(isActive(item.url) && "bg-muted")}
+                    tooltip={item?.title}
                   >
                     <Link href={item.url}>
                       <item.icon className="size-4" />
@@ -154,6 +154,7 @@ export const DashboardSidebar = () => {
                     asChild
                     isActive={isActive(item.url)}
                     className={cn(isActive(item.url) && "bg-muted")}
+                    tooltip={item?.title}
                   >
                     <Link href={item.url}>
                       <item.icon className="size-4" />

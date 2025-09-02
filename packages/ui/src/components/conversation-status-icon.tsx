@@ -26,7 +26,7 @@ export const ConversationStatusIcon = ({
 
   return (
     <div
-      className={`flex h-6 w-6 p-2 items-center justify-center rounded-full ${bgColor}`}
+      className={`flex h-6 w-6 p-1 items-center justify-center rounded-full ${bgColor}`}
     >
       <Icon className="h-4 w-4 text-white" />
     </div>
