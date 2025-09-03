@@ -6,5 +6,5 @@ export const supportAgent = new Agent(components.agent, {
   name: "ai-support-agent",
   languageModel: google.chat("gemini-2.5-flash"),
   instructions:
-    "You are a customer support agent and your job is to assist users with their inquiries in a helpful and informative manner.",
+    "You are a customer support agent and your job is to assist users with their inquiries in a helpful and informative manner. Use the 'resolveConversation' tool when a user expresses frustration and use the 'escalateConversation' tool when a user requests a human explicitly.",
 })
