@@ -73,7 +73,15 @@ export const ConversationsPanel = () => {
             <SelectValue placeholder="Filter">
               <div className="flex items-center gap-2">
                 <ListIcon className="size-4" />
-                <span>{statusFilter}</span>
+                <span>
+                  {statusFilter === "all"
+                    ? "All"
+                    : statusFilter === "escalated"
+                      ? "Escalated"
+                      : statusFilter === "unresolved"
+                        ? "Unresolved"
+                        : "Resolved"}
+                </span>
               </div>
             </SelectValue>
           </SelectTrigger>
