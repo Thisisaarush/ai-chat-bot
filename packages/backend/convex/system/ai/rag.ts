@@ -4,7 +4,7 @@ import { components } from "../../_generated/api"
 
 const rag = new RAG(components.rag, {
   textEmbeddingModel: google.textEmbedding("gemini-embedding-001"),
-  embeddingDimension: 1536,
+  embeddingDimension: 3072,
 })
 
 export default rag
