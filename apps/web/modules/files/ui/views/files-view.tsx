@@ -20,10 +20,17 @@ import { api } from "@workspace/backend/convex/_generated/api"
 import type { PublicFile } from "@workspace/backend/convex/private/files"
 import { usePaginatedQuery } from "convex/react"
 import { Button } from "@workspace/ui/components/button"
-import { FileIcon, MoreHorizontalIcon, PlusIcon, TrashIcon } from "lucide-react"
+import {
+  Delete,
+  FileIcon,
+  MoreHorizontalIcon,
+  PlusIcon,
+  TrashIcon,
+} from "lucide-react"
 import { Badge } from "@workspace/ui/components/badge"
 import { UploadDialog } from "../components/upload-dialog"
 import { useState } from "react"
+import { DeleteFileDialog } from "../components/delete-file-dialog"
 
 export const FilesView = () => {
   const files = usePaginatedQuery(
@@ -45,14 +52,32 @@ export const FilesView = () => {
   })
 
   const [uploadDialogOpen, setUploadDialogOpen] = useState(false)
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
+  const [selectedFile, setSelectedFile] = useState<PublicFile | null>(null)
+
+  const handleDeleteClick = (file: PublicFile) => {
+    setSelectedFile(file)
+    setDeleteDialogOpen(true)
+  }
+
+  const handleFileDeleted = () => {
+    setSelectedFile(null)
+  }
 
   return (
     <>
+      <DeleteFileDialog
+        file={selectedFile}
+        onDeleted={handleFileDeleted}
+        open={deleteDialogOpen}
+        onOpenChange={setDeleteDialogOpen}
+      />
       <UploadDialog
         open={uploadDialogOpen}
         onOpenChange={setUploadDialogOpen}
         onFileUploaded={() => {}}
       />
+
       <div className="flex min-h-screen flex-col bg-muted p-8">
         <div className="mx-auto w-full max-w-screen-md">
           <div className="space-y-2">
@@ -132,7 +157,7 @@ export const FilesView = () => {
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
                             <DropdownMenuItem
-                              onClick={() => {}}
+                              onClick={() => handleDeleteClick(file)}
                               className="text-destructive"
                             >
                               <TrashIcon className="size-4 mr-2" /> Delete
