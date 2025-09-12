@@ -6,7 +6,7 @@ import { Id } from "@workspace/backend/convex/_generated/dataModel"
 import { Button } from "@workspace/ui/components/button"
 import { DicebearAvatar } from "@workspace/ui/components/dicebear-avatar"
 import { useQuery } from "convex/react"
-import { GlobeIcon, MailIcon, MonitorIcon } from "lucide-react"
+import { ClockIcon, GlobeIcon, MailIcon, MonitorIcon } from "lucide-react"
 import Link from "next/link"
 import { useParams } from "next/navigation"
 import React, { useMemo } from "react"
@@ -148,6 +148,17 @@ export const ContactPanel = () => {
           },
         ],
       },
+      {
+        id: "section-details",
+        title: "Section Details",
+        icon: ClockIcon,
+        items: [
+          {
+            label: "Session Started",
+            value: new Date(contactSession._creationTime).toLocaleString(),
+          },
+        ],
+      },
     ]
   }, [contactSession, userAgentInfo, countryInfo])
 
@@ -189,10 +200,7 @@ export const ContactPanel = () => {
 
       <div>
         {contactSession?.metadata && (
-          <Accordion
-            className="w-full rounded-none border-y"
-            type="multiple"
-          >
+          <Accordion className="w-full rounded-none border-y" type="multiple">
             {accordionSections.map((section) => {
               return (
                 <AccordionItem
