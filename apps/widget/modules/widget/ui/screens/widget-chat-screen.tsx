@@ -183,6 +183,7 @@ export const WidgetChatScreen = () => {
             </AIMessage>
           ))}
         </AIConversationContent>
+        <AIConversationScrollButton />
       </AIConversation>
 
       {/* Suggestions */}

@@ -26,7 +26,7 @@ const WidgetView: React.FC<WidgetViewProps> = ({ organizationId }) => {
   }
 
   return (
-    <main className="min-h-screen min-w-screen flex h-full w-full flex-col overflow-hidden rounded-xl border bg-muted">
+    <main className="flex h-full w-full flex-col overflow-hidden rounded-xl border bg-muted">
       {screenComponents[screen]}
     </main>
   )
