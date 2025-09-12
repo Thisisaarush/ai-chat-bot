@@ -23,7 +23,6 @@ const WidgetView: React.FC<WidgetViewProps> = ({ organizationId }) => {
     selection: <WidgetSelectionScreen />,
     chat: <WidgetChatScreen />,
     contact: <p>TODO: Contact</p>,
-    voice: <p>TODO: Voice</p>,
   }
 
   return (

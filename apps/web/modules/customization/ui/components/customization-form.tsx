@@ -2,6 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
+import { Toaster } from "@workspace/ui/components/sonner"
 import { Button } from "@workspace/ui/components/button"
 import {
   Card,
@@ -170,6 +171,7 @@ export const CustomizationForm = ({ initialData }: CustomizationFormProps) => {
             </CardContent>
           </Card>
 
+          <Toaster />
           <div className="flex justify-end">
             <Button type="submit" disabled={form.formState.isSubmitting}>
               {form.formState.isSubmitting ? "Saving..." : "Save Settings"}

@@ -107,11 +107,19 @@ export const create = mutation({
       userId: args.organizationId,
     })
 
+    const widgetSettings = await ctx.db
+      .query("widgetSettings")
+      .withIndex("by_organization_id", (q) =>
+        q.eq("organizationId", args.organizationId)
+      )
+      .unique()
+
     await saveMessage(ctx, components.agent, {
       threadId,
       message: {
-        // todo: modify to widget settings initial message
-        content: "Hello, how can I help you?",
+        content:
+          (widgetSettings && widgetSettings?.greetMessage) ||
+          "Hello, how can I help you?",
         role: "assistant",
       },
     })
