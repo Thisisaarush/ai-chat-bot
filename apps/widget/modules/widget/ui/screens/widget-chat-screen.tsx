@@ -141,10 +141,24 @@ export const WidgetChatScreen = () => {
               key={message.id}
               from={message.role === "user" ? "user" : "assistant"}
             >
-              {message.text && (
-                <AIMessageContent>
-                  <AIResponse>{message.text}</AIResponse>
-                </AIMessageContent>
+              {message.text === "" && message.status === "pending" && (
+                <div className="flex items-end gap-2">
+                  <DicebearAvatar
+                    seed="assistant"
+                    size={32}
+                    badgeImageUrl="/logo.svg"
+                  />
+                  <AIMessageContent>
+                    <span className="inline-flex items-center font-bold gap-1">
+                      <span className="animate-bounce [animation-delay:-0.3s] size-1 bg-white rounded-full"></span>
+                      <span className="animate-bounce [animation-delay:-0.2s] size-1 bg-white rounded-full"></span>
+                      <span className="animate-bounce [animation-delay:-0.1s] size-1 bg-white rounded-full"></span>
+                    </span>
+                  </AIMessageContent>
+                </div>
+              )}
+              {message.text && message.status !== "pending" && (
+                <AIMessageContent>{message.text}</AIMessageContent>
               )}
               {message.text && message.role === "assistant" && (
                 <DicebearAvatar

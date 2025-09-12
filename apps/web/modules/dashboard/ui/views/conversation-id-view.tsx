@@ -167,7 +167,24 @@ export const ConversationIdView = ({
               role={message.role}
               from={message.role === "user" ? "assistant" : "user"}
             >
-              <AIMessageContent>{message.text}</AIMessageContent>
+              {message.text === "" && message.status === "pending" && (
+                <div className="flex items-end gap-2">
+                  <AIMessageContent>
+                    <span className="inline-flex items-center font-bold gap-1">
+                      <span className="animate-bounce [animation-delay:-0.3s] size-1 bg-white rounded-full"></span>
+                      <span className="animate-bounce [animation-delay:-0.2s] size-1 bg-white rounded-full"></span>
+                      <span className="animate-bounce [animation-delay:-0.1s] size-1 bg-white rounded-full"></span>
+                    </span>
+                  </AIMessageContent>
+                  <DicebearAvatar
+                    seed={conversation?.contactSessionId ?? "user"}
+                    size={32}
+                  />
+                </div>
+              )}
+              {message.text && message.status !== "pending" && (
+                <AIMessageContent>{message.text}</AIMessageContent>
+              )}
               {message.role === "user" && (
                 <DicebearAvatar
                   seed={conversation?.contactSessionId ?? "user"}
