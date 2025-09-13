@@ -24,7 +24,13 @@ export default function RootLayout({
       <body
         className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased `}
       >
-        <ClerkProvider>
+        <ClerkProvider
+          appearance={{
+            variables: {
+              colorPrimary: "#6e56cf",
+            },
+          }}
+        >
           <Providers>{children}</Providers>
         </ClerkProvider>
       </body>
